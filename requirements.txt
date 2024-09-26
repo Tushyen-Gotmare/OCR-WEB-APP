@@ -1,6 +1,6 @@
-numpy
-pandas
-streamlit
-pillow
-easyocr
-re
+streamlit==1.25.0  
+pandas==2.0.3      
+numpy==1.25.2     
+Pillow==9.3.0      
+easyocr==1.7.0     
+torch==2.0.1
