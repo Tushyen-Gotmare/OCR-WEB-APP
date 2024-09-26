@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import easyocr
 import numpy as np
-import re 
 from PIL import Image
+import re
 
 # Display uploaded image
 def display_image(image):
@@ -17,14 +17,16 @@ def extract_text_from_image(image):
 
 # Concatenate extracted text for display
 def concatenate_text(results):
-    return " , ".join([detection[1] for detection in results])
+    return " ".join([detection[1] for detection in results])
 
-# Search functionality for highlighting text with custom color and background
+# Search functionality for highlighting text using HTML
 def search_and_highlight_text(text, keyword):
     if keyword:
-        # Use re.sub() to highlight the matching keyword in the text, ignoring case
-        # This applies inline CSS for custom color and background
-        highlighted_text = re.sub(f"({keyword})", r"<span style='color: red; background-color: yellow;'>\1</span>", text, flags=re.IGNORECASE)
+        # Use re.split to handle case-insensitive keyword matching and splitting
+        parts = re.split(f"({re.escape(keyword)})", text, flags=re.IGNORECASE)
+        # Highlight the matched keyword using inline HTML for stronger emphasis
+        highlighted_text = "".join([f"<span style='color:red; background-color:yellow;'>{part}</span>" 
+                                    if part.lower() == keyword.lower() else part for part in parts])
         return highlighted_text
     return text
 
@@ -52,9 +54,9 @@ def run_ocr_app():
         if search_term:
             extracted_text = search_and_highlight_text(extracted_text, search_term)
 
-        # Display the extracted text with highlighted keyword
+        # Display the extracted text
         st.write("### Extracted Text:")
-        st.markdown(extracted_text, unsafe_allow_html=True)  # Display the extracted text with inline HTML
+        st.markdown(extracted_text, unsafe_allow_html=True)  # Enable HTML rendering for custom styles
 
 # Run the app
 run_ocr_app()
