@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-import easyocr
 import numpy as np
 from PIL import Image
+import easyocr
 import re
 
 # Display uploaded image
@@ -11,7 +11,11 @@ def display_image(image):
 
 # Extract text using easyOCR
 def extract_text_from_image(image):
-    reader = easyocr.Reader(['en', 'hi'], gpu=False)
+    # Initialize the easyOCR reader once to optimize performance
+    if 'reader' not in st.session_state:
+        st.session_state.reader = easyocr.Reader(['en', 'hi'], gpu=False)
+    
+    reader = st.session_state.reader
     results = reader.readtext(np.array(image))
     return results
 
