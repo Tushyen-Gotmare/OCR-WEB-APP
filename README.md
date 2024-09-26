@@ -92,4 +92,4 @@ This will start a local web server, and the app will be accessible at http://loc
 ```
 ## Additional Information
 
-For further details, suggestions, or contributions, please reach out to the project maintainer at tushyengotmare.email@gmail.com .
+For further details, suggestions, or contributions, please reach out to the project maintainer at tushyengotmare@gmail.com .
