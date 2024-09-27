@@ -41,7 +41,7 @@ def search_and_highlight_text(text, keyword):
 def run_ocr_app():
     st.set_page_config(layout="centered")  # Mobile-friendly layout
 
-    st.title("Hindi-English OCR with Keyword Search")
+    st.title("Hindi-English OCR with Keyword Search - Limit 200kb")
 
     # Upload image
     file = st.file_uploader("Upload an Image (PNG/JPG/JPEG)", type=['png', 'jpg', 'jpeg'])
