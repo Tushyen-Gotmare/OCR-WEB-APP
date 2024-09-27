@@ -5,9 +5,16 @@ import numpy as np
 from PIL import Image
 import re
 
-# Display uploaded image
+# Display uploaded image with a mobile-friendly size
 def display_image(image):
     st.image(image, caption="Uploaded Image", use_column_width=True)
+
+# Resize the image for mobile performance
+def resize_image(image, max_width=800):
+    width_percent = (max_width / float(image.size[0]))
+    height_size = int((float(image.size[1]) * float(width_percent)))
+    resized_image = image.resize((max_width, height_size))
+    return resized_image
 
 # Extract text using easyOCR
 def extract_text_from_image(image):
@@ -32,6 +39,8 @@ def search_and_highlight_text(text, keyword):
 
 # Streamlit app function
 def run_ocr_app():
+    st.set_page_config(layout="centered")  # Mobile-friendly layout
+
     st.title("Hindi-English OCR with Keyword Search")
 
     # Upload image
@@ -39,10 +48,11 @@ def run_ocr_app():
     
     if file:
         image = Image.open(file)
-        display_image(image)
+        resized_image = resize_image(image)  # Resize image for mobile
+        display_image(resized_image)
 
         # Extract text from image
-        results = extract_text_from_image(image)
+        results = extract_text_from_image(resized_image)
 
         # Concatenate extracted text into a single line
         extracted_text = concatenate_text(results)
