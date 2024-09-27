@@ -84,7 +84,8 @@ streamlit run app.py
 ```
 This will start a local web server, and the app will be accessible at http://localhost:8501.
 
-![image](https://github.com/user-attachments/assets/7c454b94-372a-4a50-a249-af054edb0560)
+![image](https://github.com/user-attachments/assets/7c454b94-372a-4a50-a249-af054edb0560)  ![image](https://github.com/user-attachments/assets/0faf2908-e7bc-48a6-80b5-ca4bafc8341b)
+
 
 
 ## Code Structure
